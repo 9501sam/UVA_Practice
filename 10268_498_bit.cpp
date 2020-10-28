@@ -1,35 +1,34 @@
 #include <iostream>
+#include <cstdio>
 #include <vector>
-#include <stdio.h>
 using namespace std;
 
 int main(){
-	long long int x, temp;
-	vector<long long int> a;
-	char c;
-
+	long long int x;
 	while(scanf("%lld", &x) != EOF){
-		scanf("%lld%c", &temp, &c);
-		a.push_back(temp);
-		while(c == ' '){
-			scanf("%lld%c", &temp, &c);
-			a.push_back(temp);
+		vector<long long int> c;
+		int num;
+		char ch;
+		while(scanf("%lld%c", &num, &ch)){
+			if(ch == '\n'){
+				break;
+			}
+			c.push_back(num);
 		}
 
-		///***do something to x and a and calculate derivative***///
-		long long int de = 0;
-		int n = a.size() - 1;
-
-		de = a[0] * n;
-		for(int i = 1; i < n; i++){
-			de *= x;
-			de += a[i] * (n - i);
+		long long int ans = 0;
+		long long int e = 0;
+		//c = c[i], e = e, x = x, ans += c*(n)*x^(n-1)
+		int n = c.size();
+		for(int i = 0; i < c.size(); i++){
+			ans += c[i]*n;
+			n--;
+			ans *= x;
 		}
-		printf("%lld\n", de);
+		cout << ans << endl;
 
-		a.clear();
-		///***///
 	}
-
-	return 0;
 }
+
+//a.size() == 7
+//2*x^7  3*x^6  4*x^5  1*x^4  3*x^3  4*x^2  5*x^1
