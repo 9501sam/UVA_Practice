@@ -1,47 +1,41 @@
 #include <iostream>
-#include <vector>
-#include <cstdio>
+#include <string>
 using namespace std;
 
 int main(){
-	int T;
-	scanf("%d", &T);
+	int t;
+	int counter = 1;
+	cin >> t;
 	cin.ignore(123, '\n');
 	cin.ignore(123, '\n');
-	for(int t = 1; t <= T; t++){ //every case
-		cout << "Case #" << t << ":" << endl;
-		while(1){ //a case
-			//read a line
-			char ch;
-			scanf("%c", &ch);
-			int chIndex = 1;
-			if(ch == '\n'){
-				break;
-			}
-			///***print a word***///
-			vector<char> str;
-			bool flag = true;
-			while(ch != '\n'){
-				if(ch == ' '){
-					chIndex = 0;
-					flag = true;
+	while(t--){
+		cout << "Case #" << counter++ << ":" << endl;
+
+		string str;
+		//getline(cin, str);
+		while(getline(cin, str) && str.size() != 0){
+			int iow = 0;
+			int tar = 1;
+			bool ready_to_print = true;
+
+			for(int i = 0; i < str.size(); i++){
+				if(str[i] == ' '){
+					iow = 0;
+					ready_to_print = true;
+				}else{
+					iow++;
+					if(iow == tar && ready_to_print){
+						cout << str[i];
+						ready_to_print = false;
+						tar++;
+					}
 				}
-				if(chIndex == str.size() + 1 && flag){
-					str.push_back(ch);
-					flag = false;
-				}
-				scanf("%c", &ch);
-				chIndex++;
-			}
-			///***haha***///
-			for(char i : str){
-				cout << i;
 			}
 			cout << endl;
+
 		}
-		if(t != T){
+		if(t)
 			cout << endl;
-		}
+
 	}
-	return 0;
 }
