@@ -9,8 +9,7 @@ int main(){
 	
 
 	char x1, x2, y1, y2; //from x to y
-	char ch;
-	while(scanf("%c%c%c%c%c\n", &x1, &x2, &ch, &y1, &y2) != EOF){
+	while(scanf("%c%c %c%c\n", &x1, &x2, &y1, &y2) != EOF){
 		int xR = x1-'a';
 		int xC = x2-'1';
 		int yR = y1-'a';
